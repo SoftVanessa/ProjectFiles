@@ -26,7 +26,7 @@ from ProjectDatabase..CovidDeaths$
 where location like '%portu%'
 order by 1,2
 
--- looking at the countries with the hightest infection rate
+-- looking at the countries with the highest infection rate
 
 select location, population, max(total_cases) as highestInfectionCount, 
 max((total_deaths/population))*100 as deathPercent
@@ -34,7 +34,7 @@ from ProjectDatabase..CovidDeaths$
 group by location, population
 order by highestInfectionCount desc
 
--- looking at higstest death count per population
+-- looking at highest death count per population
 
 select location, max(cast(total_cases as int)) as totalDeathCount 
 from ProjectDatabase..CovidDeaths$
@@ -49,7 +49,7 @@ where continent is not null
 group by continent
 order by totalDeathCount desc
 
--- lshowing th contnente with highest death count
+-- showing continent with highest death count
 
 select continent, max(cast(total_cases as int)) as totalDeathCount 
 from ProjectDatabase..CovidDeaths$
@@ -121,7 +121,7 @@ join ProjectDatabase..CovidVaccinations$ vac
   from #PercentPopVac
 
 
-  -- Create views for later visualization
+  -- views for later visualization
   
   Create view acumlated_vac as 
   select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations,
